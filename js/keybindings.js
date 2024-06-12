@@ -2,7 +2,7 @@ let controls;
 import { PointerSettingsMenu } from './settings/settings.js';
 export default function init() {
 	// console.log('Pointer | Initializing controls');
-	const settings = mergeObject(PointerSettingsMenu.defaultSettings.controls, game.user.getFlag('pointer', 'settings')?.controls);
+	const settings = foundry.utils.mergeObject(PointerSettingsMenu.defaultSettings.controls, game.user.getFlag('pointer', 'settings')?.controls);
 	removeListeners();
 
 	setUpControls(settings);

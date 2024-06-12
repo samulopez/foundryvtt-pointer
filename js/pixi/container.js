@@ -53,7 +53,7 @@ export class PointerContainer extends PIXI.Container {
     const collection =
       game.settings.get("pointer", "collection") ||
       PointerSettingsMenu.defaultCollection;
-    const settings = mergeObject(
+    const settings = foundry.utils.mergeObject(
       PointerSettingsMenu.defaultSettings,
       user.getFlag("pointer", "settings")
     );

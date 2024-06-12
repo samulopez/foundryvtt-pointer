@@ -30,9 +30,8 @@
     }
   ],
   "compatibility": {
-    "minimum": "10",
-    "verified": "11.302",
-    "maximum": "11"
+    "minimum": "12",
+    "verified": "12.327"
   },
   "socket": true,
   "manifest": "#{MANIFEST}#",

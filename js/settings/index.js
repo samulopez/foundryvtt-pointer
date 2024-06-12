@@ -59,11 +59,11 @@ export function initSettingsMenu() {
 	if (game.user.isGM) {
 		const version = game.settings.get('pointer', 'version');
 		// only do this once after upgrading to 2.0.0
-		if (isNewerVersion("2.0.0", version)) {
+		if (foundry.utils.isNewerVersion("2.0.0", version)) {
 			new (PointerSettingsMenu)().render(true);
 		}
 		// Update version to newest mod version - every time
-		if (isNewerVersion(game.modules.get('pointer').version, version)) {
+		if (foundry.utils.isNewerVersion(game.modules.get('pointer').version, version)) {
 			game.settings.set('pointer', 'version', game.modules.get('pointer').version);
 		}
 	}
