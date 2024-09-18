@@ -1,3 +1,7 @@
+### 12.0.0 (BETA)
+
+- Just update the module json
+
 ### 2.6.2 (BETA)
 
 - Update manifest for v12 and some little bug fix ty to @farling42
