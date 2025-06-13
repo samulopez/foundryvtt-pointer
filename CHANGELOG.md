@@ -1,4 +1,4 @@
-### 12.1.0 (BETA)
+### 13.0.0 (BETA)
 
 - Update manifest for v13
 
