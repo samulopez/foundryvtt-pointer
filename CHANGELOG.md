@@ -1,3 +1,7 @@
+### 12.1.0 (BETA)
+
+- Update manifest for v13
+
 ### 12.0.0 (BETA)
 
 - Just update the module json
