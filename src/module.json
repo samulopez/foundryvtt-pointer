@@ -2,7 +2,7 @@
     "id": "pointer",
     "title": "PnP - Pointer and Pings! (BETA)",
     "description": "Gives all players the option to show a customizable cursor on demand, as well as ping any location with a custom ping!<br>Hotkeys, pings, pointer, everything customizable!<br>As GM you can also move your players view to your pin on demand.",
-    "version": "12.1.0",
+    "version": "12.1.1-alpha",
     "authors": [
         {
             "name": "Moerill",
@@ -22,6 +22,10 @@
             "ko-fi": "",
             "reddit": "",
             "email": ""
+        },
+        {
+            "name": "samulopez",
+            "url": "https://github.com/samulopez/"
         }
     ],
     "socket": true,
@@ -75,12 +79,12 @@
         "styles/pointer-settings.css"
     ],
     "packs": [],
-    "url": "https://github.com/p4535992/foundryvtt-pointer",
-    "manifest": "https://github.com/p4535992/foundryvtt-pointer/releases/download/12.1.0/module.json",
-    "download": "https://github.com/p4535992/foundryvtt-pointer/releases/download/12.1.0/module.zip",
-    "readme": "https://github.com/p4535992/foundryvtt-pointer/blob/master/README.md",
-    "changelog": "https://github.com/p4535992/foundryvtt-pointer/blob/master/CHANGELOG.md",
-    "bugs": "https://github.com/p4535992/foundryvtt-pointer/issues",
+    "url": "https://github.com/samulopez/foundryvtt-pointer",
+    "manifest": "https://github.com/samulopez/foundryvtt-pointer/releases/download/12.1.1-alpha/module.json",
+    "download": "https://github.com/samulopez/foundryvtt-pointer/releases/download/12.1.1-alpha/module.zip",
+    "readme": "https://github.com/samulopez/foundryvtt-pointer/blob/master/README.md",
+    "changelog": "https://github.com/samulopez/foundryvtt-pointer/blob/master/CHANGELOG.md",
+    "bugs": "https://github.com/samulopez/foundryvtt-pointer/issues",
     "compatibility": {
         "minimum": 12,
         "verified": 13,

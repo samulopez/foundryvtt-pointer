@@ -1,3 +1,7 @@
+### 12.1.1 (BETA)
+
+- Change maintainer of the module in the manifest
+
 ### 12.1.0 (BETA)
 
 - Update manifest for v13
