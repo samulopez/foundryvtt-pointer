@@ -1,3 +1,7 @@
+### 13.1.0
+
+- Big update for v13 , ty very much to @samulopez for the PR https://github.com/p4535992/foundryvtt-pointer/pull/7
+
 ### 13.0.0 (BETA)
 
 - Update manifest for v13
