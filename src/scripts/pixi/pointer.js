@@ -1,4 +1,5 @@
-import CONSTANTS from "../constants";
+import CONSTANTS from "../constants.js";
+import { gsap } from "gsap";
 
 export class Pointer extends PIXI.Container {
   constructor(data = {}, userId = game.userId, gridSize = canvas.grid?.size) {

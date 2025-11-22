@@ -1,3 +1,11 @@
+### 14.0.0
+
+- **Compatibility**: Full support for Foundry VTT v13.
+- **Refactor**: Core logic moved to `PointerManager` for better maintainability and SOLID compliance.
+- **Tech Debt**: Removed all jQuery usage from Settings menu, replaced with native DOM API.
+- **Testing**: Added Unit Tests using Vitest.
+- **Authors**: Added Shr1mps to authors list.
+
 ### 13.1.0
 
 - Big update for v13 , ty very much to @samulopez for the PR https://github.com/p4535992/foundryvtt-pointer/pull/7
