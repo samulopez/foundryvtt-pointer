@@ -2,7 +2,7 @@
     "id": "pointer",
     "title": "PnP - Pointer and Pings!",
     "description": "Gives all players the option to show a customizable cursor on demand, as well as ping any location with a custom ping!<br>Hotkeys, pings, pointer, everything customizable!<br>As GM you can also move your players view to your pin on demand.",
-    "version": "13.1.0",
+    "version": "14.0.0",
     "authors": [
         {
             "name": "Moerill",
@@ -26,6 +26,10 @@
         {
             "name": "samulopez",
             "url": "https://github.com/samulopez"
+        },
+        {
+            "name": "Shr1mps",
+            "url": "https://github.com/Shr1mps"
         }
     ],
     "esmodules": [
