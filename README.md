@@ -23,8 +23,6 @@ Gives all players the option to show a customizable cursor on demand, as well as
 Hotkeys, pings, pointer, everything customizable!
 As GM you can also move your players view to your pin on demand.
 
-## WHY THIS MODULE IS IN BETA ? Don't get too excited, I just took the module maintenance and did some minor bug fixing, the module requires considerable rewriting especially with the new API of v13
-
 ## Installation
 
 It's always easiest to install modules from the in game add-on browser.
