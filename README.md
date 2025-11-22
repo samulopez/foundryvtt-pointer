@@ -19,6 +19,8 @@
 
 ### If you want to buy me a coffee [![alt-text](https://img.shields.io/badge/-Patreon-%23ff424d?style=for-the-badge)](https://www.patreon.com/p4535992)
 
+## NOTE: This module is under maintenance, I have no plans to update or add features. However, I will try to fix any bugs as possible. Any contribution is welcome.
+
 Gives all players the option to show a customizable cursor on demand, as well as ping any location with a custom ping!
 Hotkeys, pings, pointer, everything customizable!
 As GM you can also move your players view to your pin on demand.
