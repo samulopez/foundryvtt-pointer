@@ -1,4 +1,4 @@
-### 14.0.0
+### 13.2.0
 
 - **Compatibility**: Full support for Foundry VTT v13.
 - **Refactor**: Core logic moved to `PointerManager` for better maintainability and SOLID compliance.

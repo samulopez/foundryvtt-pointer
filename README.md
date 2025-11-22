@@ -1,4 +1,4 @@
-# PnP - Pointer and Pings! (BETA)
+# PnP - Pointer and Pings!
 
 
 ![GitHub issues](https://img.shields.io/github/issues-raw/p4535992/foundryvtt-pointer?style=for-the-badge)
