@@ -1,8 +1,11 @@
 let controls;
+let pointerManager;
 import CONSTANTS from "./constants.js";
 import Logger from "./lib/Logger.js";
 import { PointerSettingsMenu } from "./settings/settings-menu.js";
-export default function init() {
+
+export default function init(manager) {
+  if (manager) pointerManager = manager;
   Logger.debug("Pointer Initializing controls");
   const settings = foundry.utils.mergeObject(
     PointerSettingsMenu.defaultSettings.controls,
@@ -141,12 +144,12 @@ function onPointerDown(ev) {
   if (ev.repeat) {
     return;
   }
-  if (!checkKey(ev, controls.pointer) || controls.pointer.active || !canvas.controls.pointer) {
+  if (!checkKey(ev, controls.pointer) || controls.pointer.active || !pointerManager) {
     return;
   }
   Logger.debug("Pointer Key down", ev);
   controls.pointer.active = true;
-  canvas.controls.pointer.start();
+  pointerManager.start();
 }
 
 function onPointerUp(ev) {
@@ -159,13 +162,13 @@ function onPointerUp(ev) {
   else if (ev.button && !checkKey(ev, controls.pointer)) {
     return;
   }
-  if (!canvas.controls.pointer) {
+  if (!pointerManager) {
     Logger.debug("Pointer controls not available, cannot stop pointer");
     return;
   }
   Logger.debug("Pointer Key up", ev);
   controls.pointer.active = false;
-  canvas.controls.pointer.stop();
+  pointerManager.stop();
 }
 
 function onPing(ev) {
@@ -176,7 +179,7 @@ function onPing(ev) {
     return;
   }
   Logger.debug("Pointer on Ping", ev);
-  canvas.controls.pointer.ping();
+  if (pointerManager) pointerManager.ping();
 }
 
 function onForcePing(ev) {
@@ -187,5 +190,5 @@ function onForcePing(ev) {
     return;
   }
   Logger.debug("Pointer on Force Ping", ev);
-  canvas.controls.pointer.ping({ force: true });
+  if (pointerManager) pointerManager.ping({ force: true });
 }

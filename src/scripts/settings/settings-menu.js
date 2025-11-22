@@ -310,12 +310,12 @@ export class PointerSettingsMenu extends foundry.applications.api.HandlebarsAppl
   }
 
   async _onRender(context, options) {
-    const html = $(this.element);
-    html[0].querySelectorAll(".pointer-control-chooser").forEach((e) => this._initControlChooser(e));
+    const html = this.element;
+    html.querySelectorAll(".pointer-control-chooser").forEach((e) => this._initControlChooser(e));
 
-    this._initDesigner(html[0].querySelector(".designer"));
+    this._initDesigner(html.querySelector(".designer"));
 
-    const chooser = html[0].querySelector(".chooser");
+    const chooser = html.querySelector(".chooser");
     chooser.addEventListener("click", (ev) => {
       let target = ev.target.closest(".pointer-name");
       if (target) {
@@ -374,7 +374,7 @@ export class PointerSettingsMenu extends foundry.applications.api.HandlebarsAppl
     if (!game.user.isGM) {
       return;
     }
-    html[0].querySelector(".pointer-apply-settings").addEventListener("click", async (ev) => {
+    html.querySelector(".pointer-apply-settings").addEventListener("click", async (ev) => {
       const settings = this.userData;
       Logger.debug("Flag 'settings' updated :", settings);
       for (let user of game.users) {

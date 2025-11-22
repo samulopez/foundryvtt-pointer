@@ -1,36 +1,16 @@
 import { Pointer, Ping } from "./pointer.js";
-//@ts-expect-error
-// import { TweenMax } from "../../../../scripts/greensock/esm/all.js";
 import { PointerSettingsMenu } from "../settings/settings-menu.js";
 import CONSTANTS from "../constants.js";
+import { gsap } from "gsap";
 
 export class PointerContainer extends PIXI.Container {
     constructor() {
         super();
         this.initUsers();
-
-        this._socket = "module.pointer";
-        this._onMouseMove = (ev) => this._mouseMove(ev);
     }
 
     get deltaTime() {
         return 1000 / 30;
-    }
-
-    static init() {
-        // called inside the ready hook, so settings are registered.
-        // ready hook *always* is supposed to come after the canvasReady hook
-        if (canvas.scene) canvas.controls.pointer = canvas.controls.addChild(new PointerContainer());
-
-        // window.addEventListener('mousemove', PointerContainer.trackMousePos);
-        game.socket.on("module.pointer", PointerContainer.socketHandler);
-        // but ready comes only during initialization
-        // so we need to take care of future scene changes (or other reasons for canvas rerenders)
-        Hooks.on("canvasReady", () => {
-            if (canvas.controls.pointer) canvas.controls.pointer.destroy({ chidren: true });
-
-            canvas.controls.pointer = canvas.controls.addChild(new PointerContainer());
-        });
     }
 
     async initUsers() {
@@ -62,8 +42,10 @@ export class PointerContainer extends PIXI.Container {
         if (!data.pointer || !data.ping) {
             return;
         }
-        this._users[user.id].pointer.update(data.pointer);
-        this._users[user.id].ping.update(data.ping);
+        if (this._users[user.id]) {
+            this._users[user.id].pointer.update(data.pointer);
+            this._users[user.id].ping.update(data.ping);
+        }
     }
 
     updateAll() {
@@ -73,6 +55,7 @@ export class PointerContainer extends PIXI.Container {
     }
 
     updateUserColor(user) {
+        if (!this._users[user.id]) return;
         const pointer = this._users[user.id].pointer;
         pointer.update({ tint: pointer.tint });
         const ping = this._users[user.id].ping;
@@ -80,19 +63,12 @@ export class PointerContainer extends PIXI.Container {
     }
 
     getMouseWorldCoord() {
-        // return canvas.app.renderer.plugins.interaction.mouse.getLocalPosition(canvas.stage);
-
-        // TODO is really ok ?
-        // if (foundry.utils.isNewerVersion(game.version, 11)) {
-        //   return canvas.mousePosition;
-        // }
-
-        if (canvas.app.renderer.events) {
-            // PixiJS 7 (Foundry VTT 11)
-            return canvas.app.renderer.events.pointer.getLocalPosition(canvas.stage);
+        // V13 Compatibility Check
+        if (canvas.mousePosition) {
+            return canvas.mousePosition;
         }
-
-        return canvas.app.renderer.plugins.interaction.mouse.getLocalPosition(canvas.stage);
+        // Fallback for older versions or if mousePosition is not available in this context
+        return canvas.app.renderer.events.pointer.getLocalPosition(canvas.stage);
     }
 
     ping({
@@ -101,101 +77,40 @@ export class PointerContainer extends PIXI.Container {
         force = false,
         scale = canvas.stage.scale.x,
     } = {}) {
+        if (!this._users[userId]) return;
         const ping = this._users[userId].ping;
         ping.update({ position });
-
-        if (force) {
-            canvas.animatePan({ x: position.x, y: position.y, scale: scale });
-        }
-
-        if (userId !== game.user.id) return;
-
-        const data = {
-            senderId: userId,
-            position: position,
-            sceneId: canvas.scene.id,
-            type: "ping",
-            force: force,
-            scale: canvas.stage.scale.x,
-        };
-        game.socket.emit(this._socket, data);
-    }
-
-    destroy(options) {
-        super.destroy(options);
-    }
-
-    static socketHandler(data) {
-        if (data.stop) {
-            canvas.controls.pointer.hidePointer(data.senderId);
-            return;
-        } else if (data.sceneId !== canvas.scene.id) {
-            return;
-        } else if (data.type === "pointer") {
-            canvas.controls.pointer.movePointer(data.senderId, data.position);
-        } else if (data.type === "ping")
-            canvas.controls.pointer.ping({
-                userId: data.senderId,
-                position: data.position,
-                force: data.force,
-                scale: data.scale,
-            });
     }
 
     movePointer(userId, { x, y }) {
+        if (!this._users[userId]) return;
         const pointer = this._users[userId].pointer;
         if (pointer.renderable) {
             // only animate if already visible
-            TweenMax.to(pointer.position, this.deltaTime / 1000, { x, y });
+            gsap.to(pointer.position, { duration: this.deltaTime / 1000, x, y });
         } else {
             pointer.renderable = true;
             this._users[userId].pointer.update({ position: { x, y } });
         }
     }
 
+    updatePointerPosition(userId, { x, y }) {
+        if (!this._users[userId]) return;
+        this._users[userId].pointer.update({ position: { x, y } });
+    }
+
+    showPointer(userId) {
+        if (!this._users[userId]) return;
+        this._users[userId].pointer.renderable = true;
+    }
+
     hidePointer(userId) {
+        if (!this._users[userId]) return;
         const pointer = this._users[userId].pointer;
         pointer.hide();
     }
 
-    start() {
-        this.lastTime = 0;
-        this._mouseMove();
-        window.addEventListener("mousemove", this._onMouseMove);
-        this._users[game.user.id].pointer.renderable = true;
-    }
-
-    stop() {
-        window.removeEventListener("mousemove", this._onMouseMove);
-        this._users[game.user.id].pointer.renderable = false;
-        const data = {
-            senderId: game.user.id,
-            stop: true,
-        };
-        game.socket.emit(this._socket, data);
-    }
-
-    _mouseMove(ev) {
-        const { x, y } = this.getMouseWorldCoord();
-        this._users[game.user.id].pointer.update({ position: { x, y } });
-
-        const dt = Date.now() - this.lastTime;
-        if (dt < this.deltaTime)
-            // 30 times per second
-            return;
-
-        this.lastTime = Date.now();
-        let mdata = {
-            senderId: game.user.id,
-            position: { x, y },
-            sceneId: canvas.scene.id,
-            type: "pointer",
-        };
-        game.socket.emit(this._socket, mdata);
-    }
-
-    destroy(...args) {
-        super.destroy(...args);
-        this.stop();
+    destroy(options) {
+        super.destroy(options);
     }
 }
