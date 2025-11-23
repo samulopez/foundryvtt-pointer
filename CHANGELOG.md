@@ -1,3 +1,8 @@
+
+### 13.2.1
+
+- Update manifest json with languages
+
 ### 13.2.0
 
 - **Compatibility**: Full support for Foundry VTT v13.

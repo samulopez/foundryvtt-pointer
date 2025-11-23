@@ -2,7 +2,7 @@
     "id": "pointer",
     "title": "PnP - Pointer and Pings!",
     "description": "Gives all players the option to show a customizable cursor on demand, as well as ping any location with a custom ping!<br>Hotkeys, pings, pointer, everything customizable!<br>As GM you can also move your players view to your pin on demand.",
-    "version": "13.2.0",
+    "version": "13.2.1",
     "authors": [
         {
             "name": "Moerill",
@@ -22,15 +22,50 @@
             "ko-fi": "",
             "reddit": "",
             "email": ""
-        },
-        {
-            "name": "samulopez",
-            "url": "https://github.com/samulopez"
-        },
-        {
-            "name": "Shr1mps",
-            "url": "https://github.com/Shr1mps"
         }
+    ],
+    "socket": true,
+    "media": [
+        {
+            "type": "icon",
+            "location": ""
+        },
+        {
+            "type": "cover",
+            "location": ""
+        },
+        {
+            "type": "screenshot",
+            "location": ""
+        }
+    ],
+    "languages": [
+        {
+            "lang": "en",
+            "name": "English",
+            "path": "languages/en.json"
+        },
+        {
+            "lang": "es",
+            "name": "Español",
+            "path": "languages/es.json"
+        },
+        {
+            "lang": "de",
+            "name": "Deutsch",
+            "path": "languages/de.json"
+        },
+        {
+            "lang": "ja",
+            "name": "日本語",
+            "path": "languages/ja.json"
+        }
+    ],
+    "scripts": [
+        "greensock/dist/gsap.min.js",
+        "greensock/dist/PixiPlugin.min.js",
+        "greensock/dist/ScrollToPlugin.min.js",
+        "greensock/dist/SplitText.min.js"
     ],
     "esmodules": [
         "module.js"
@@ -40,15 +75,15 @@
     ],
     "packs": [],
     "url": "https://github.com/p4535992/foundryvtt-pointer",
-    "manifest": "https://github.com/p4535992/foundryvtt-pointer/releases/download/13.2.0/module.json",
-    "download": "https://github.com/p4535992/foundryvtt-pointer/releases/download/13.2.0/module.zip",
+    "manifest": "https://github.com/p4535992/foundryvtt-pointer/releases/download/13.2.1/module.json",
+    "download": "https://github.com/p4535992/foundryvtt-pointer/releases/download/13.2.1/module.zip",
     "readme": "https://github.com/p4535992/foundryvtt-pointer/blob/master/README.md",
     "changelog": "https://github.com/p4535992/foundryvtt-pointer/blob/master/CHANGELOG.md",
     "bugs": "https://github.com/p4535992/foundryvtt-pointer/issues",
     "compatibility": {
-        "minimum": "13",
-        "verified": "13",
-        "maximum": "13"
+        "minimum": 13,
+        "verified": 13,
+        "maximum": 13
     },
     "relationships": {
         "systems": [],
